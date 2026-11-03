@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impressum — StageCase</title>
+<meta name="theme-color" content="#0b0b0d">
+<style>
+  :root {
+    color-scheme: dark;
+    --paper: #0b0b0d; --surface: #141416; --line: #2a2a2f;
+    --ink: #f2f2f2; --ink-soft: #b4b4bc; --accent: #ffd60a;
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--paper); color: var(--ink); margin: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.6; padding: 0 20px; max-width: 680px; margin: 0 auto;
+  }
+  h1, h2 { letter-spacing: -.015em; }
+  h1 { font-size: 28px; margin: 28px 0 8px; }
+  h2 { font-size: 16px; margin: 34px 0 8px; color: var(--accent); }
+  p { color: var(--ink-soft); margin: 0 0 8px; }
+  a { color: var(--accent); }
+  a:hover { color: #fff; }
+  .head { display: flex; justify-content: space-between; align-items: center; margin: 32px 0 0; font-size: 14px; }
+  .lang button { background: none; border: 1px solid var(--line); color: var(--ink-soft); border-radius: 6px; padding: 3px 8px; font: 600 12px inherit; cursor: pointer; }
+  .lang button.on { color: var(--ink); border-color: #6b6b74; }
+  address { font-style: normal; }
+  footer { margin: 48px 0 40px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); }
+  [data-lang] { display: none; } html[lang="de"] [data-lang="de"], html[lang="en"] [data-lang="en"] { display: block; }
+</style>
+</head>
+<body>
+
+<div class="head"><a href="./" data-de="← StageCase" data-en="← StageCase">← StageCase</a>
+  <span class="lang"><button type="button" data-l="de">DE</button> <button type="button" data-l="en">EN</button></span></div>
+
+<!-- ===================================================================== Deutsch -->
+<main data-lang="de">
+<h1>Impressum</h1>
+
+<h2>Angaben gemäß § 5 DDG</h2>
+<address>
+  Casework Software<br>
+  Hendrik Holthaus<br>
+  Wienerstr. 12<br>
+  48145 Münster<br>
+  Deutschland
+</address>
+
+<h2>Kontakt</h2>
+<p>E-Mail: <a href="mailto:info@casework-software.com">info@casework-software.com</a></p>
+
+<h2>Verantwortlich für den Inhalt</h2>
+<p>Hendrik Holthaus, Anschrift wie oben.</p>
+
+<h2>Verbraucherstreitbeilegung</h2>
+<p>Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+<h2>Haftung für Inhalte</h2>
+<p>Als Diensteanbieter bin ich für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Diese Seiten stellen meine Software-Projekte vor, darunter die kostenpflichtige App StageCase.</p>
+
+<h2>Haftung für Links</h2>
+<p>Diese Seiten enthalten Links zu externen Websites Dritter (z. B. GitHub, Instagram, YouTube, Stripe), auf deren Inhalte ich keinen Einfluss habe. Für diese fremden Inhalte übernehme ich keine Gewähr; verantwortlich ist stets der jeweilige Anbieter der verlinkten Seite.</p>
+</main>
+
+<!-- ===================================================================== English -->
+<main data-lang="en">
+<h1>Imprint</h1>
+
+<h2>Information pursuant to Sec. 5 DDG (German Digital Services Act)</h2>
+<address>
+  Casework Software<br>
+  Hendrik Holthaus<br>
+  Wienerstr. 12<br>
+  48145 Münster<br>
+  Germany
+</address>
+
+<h2>Contact</h2>
+<p>Email: <a href="mailto:info@casework-software.com">info@casework-software.com</a></p>
+
+<h2>Responsible for content</h2>
+<p>Hendrik Holthaus, address as above.</p>
+
+<h2>Consumer dispute resolution</h2>
+<p>I am neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board.</p>
+
+<h2>Liability for content</h2>
+<p>As a service provider, I am responsible for my own content on these pages in accordance with general law. These pages present my software projects, including the paid app StageCase.</p>
+
+<h2>Liability for links</h2>
+<p>These pages contain links to external third-party websites (e.g. GitHub, Instagram, YouTube, Stripe) over whose content I have no influence. I accept no liability for this external content; the respective provider of the linked page is always responsible.</p>
+</main>
+
+<footer><a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy policy">Datenschutz</a></footer>
+
+<script>
+(() => {
+  let de = true;
+  try { de = (localStorage.getItem('sc-lang') || ((navigator.language || 'de').startsWith('de') ? 'de' : 'en')) === 'de'; } catch (_) {}
+  const set = () => {
+    document.documentElement.lang = de ? 'de' : 'en';
+    document.title = (de ? 'Impressum' : 'Imprint') + ' — StageCase';
+    for (const b of document.querySelectorAll('.lang button')) b.classList.toggle('on', (b.dataset.l === 'de') === de);
+    for (const a of document.querySelectorAll('[data-de]')) a.textContent = de ? a.dataset.de : a.dataset.en;
+  };
+  for (const b of document.querySelectorAll('.lang button')) b.addEventListener('click', () => { de = b.dataset.l === 'de'; try { localStorage.setItem('sc-lang', b.dataset.l); } catch (_) {} set(); });
+  set();
+})();
+</script>
+</body>
+</html>

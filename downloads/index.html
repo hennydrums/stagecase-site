@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0b0d">
+<meta name="robots" content="noindex">
+<title>StageCase laden</title>
+<link rel="icon" href="../icon-512.png">
+<style>
+  /* Download-Seite fuer Interessenten: liest immer die neueste Test-DMG aus
+     https://looperpilot.github.io/retail/latest.json (schreibt tools/publish-retail-test.sh im Retail-Repo). */
+  :root { color-scheme: dark; --bg: #0b0b0d; --card: #141416; --line: #2a2a2f; --fg: #f2f2f2; --dim: #b4b4bc; --faint: #6b6b74; --or: #ff9f0a; --play: #34c759; --metal: #c9ced4; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); }
+  body { font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif; -webkit-font-smoothing: antialiased; padding: 0 16px; }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  .head { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; font-size: 14px; }
+  .head a { color: var(--dim); text-decoration: none; }
+  .lang button { background: none; border: 1px solid var(--line); color: var(--dim); border-radius: 6px; padding: 3px 8px; font: 600 12px inherit; cursor: pointer; }
+  .lang button.on { color: var(--fg); border-color: var(--faint); }
+  .wm { display: block; width: min(100%, 340px); margin: 26px auto 6px; }
+  h1 { text-align: center; font-size: 26px; margin: 18px 0 6px; letter-spacing: -.01em; }
+  .sub { text-align: center; color: var(--dim); margin: 0 0 26px; }
+  .card { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin: 0 0 18px; }
+  .dl { text-align: center; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--or); color: #16161a; font-weight: 800; font-size: 17px; text-decoration: none; padding: 14px 24px; border-radius: 12px; }
+  .btn[aria-disabled="true"] { opacity: .5; pointer-events: none; }
+  .ver { color: var(--faint); font-size: 13.5px; margin-top: 12px; }
+  .facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; color: var(--dim); font-size: 14px; margin-top: 16px; }
+  .facts span::before { content: '✓ '; color: var(--play); font-weight: 800; }
+  h2 { font-size: 16px; margin: 0 0 12px; }
+  ol { margin: 0; padding-left: 22px; color: var(--dim); } ol li { margin: 0 0 10px; } ol b { color: var(--fg); }
+  .imp { border-left: 3px solid var(--or); padding: 2px 0 2px 12px; margin: 6px 0 0; }
+  p { color: var(--dim); margin: 0 0 10px; } a { color: var(--or); }
+  footer { color: var(--faint); font-size: 13px; padding: 20px 0 32px; border-top: 1px solid var(--line); margin-top: 30px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  footer a { color: var(--faint); text-decoration: none; margin-left: 14px; }
+  [data-lang] { display: none; } html[lang="de"] [data-lang="de"], html[lang="en"] [data-lang="en"] { display: block; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head"><a href="../" data-de="← StageCase" data-en="← StageCase">← StageCase</a><span class="lang"><button type="button" data-l="de">DE</button> <button type="button" data-l="en">EN</button></span></div>
+
+  <svg class="wm" viewBox="0 0 392 110" role="img" aria-label="StageCase">
+    <defs><linearGradient id="sv" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#d4d9de"/><stop offset="1" stop-color="#a9b0b7"/></linearGradient></defs>
+    <g fill="none" stroke="url(#sv)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M344 4 H369 a13 13 0 0 1 13 13 V42"/><path d="M40 98 H15 a13 13 0 0 1 -13 -13 V60"/></g>
+    <svg x="20" y="20" width="58" height="58" viewBox="0 0 512 512"><circle cx="256" cy="256" r="176" fill="none" stroke="#2a2a30" stroke-width="44"/><path d="M256 80 A176 176 0 1 1 80 256" fill="none" stroke="#34c759" stroke-width="44" stroke-linecap="round"/><path d="M256 256 V154 A102 102 0 1 1 154 256 Z" fill="#ff9f0a"/></svg>
+    <text x="94" y="64" font-family="Avenir Next, Helvetica Neue, Helvetica, Arial" font-weight="800" font-size="42" letter-spacing="-0.5"><tspan fill="#fff">Stage</tspan><tspan fill="#ff9f0a">Case</tspan></text>
+    <text x="95" y="85" font-family="-apple-system, Helvetica, Arial" font-size="10.5" letter-spacing="2" fill="#9a9aa4">MUSICAL DIRECTOR FOR ABLETON LIVE</text>
+  </svg>
+
+  <main data-lang="de">
+    <h1>StageCase laden</h1>
+    <p class="sub">14 Tage alle Funktionen testen, danach mit deinem Lizenzschlüssel (Lite oder Pro) weiter – von Apple geprüft, ohne Anmeldung.</p>
+    <div class="card dl">
+      <a class="btn dmg" data-src="key" href="#" aria-disabled="true">⬇ StageCase laden</a>
+      <div class="ver" data-ver="key">Neueste Version wird gesucht …</div>
+      <div class="facts"><span>macOS 12 oder neuer</span><span>Apple Silicon & Intel</span><span>Ableton Live 11 / 12</span></div>
+    </div>
+    <div class="card">
+      <h2>So geht's los</h2>
+      <ol>
+        <li>Die DMG öffnen und <b>„StageCase“</b> in den Ordner <b>Programme</b> ziehen, dann starten.</li>
+        <li>Der <b>Einrichtungs-Assistent</b> führt durch alles Weitere und installiert das Remote Script für Live.</li>
+        <li class="imp"><b>Wichtig, in Live:</b> Einstellungen → <i>Link, Tempo & MIDI</i> → bei einer freien Bedienoberfläche <b>„Stagecase“</b> wählen, Eingang und Ausgang ebenfalls <b>„Stagecase“</b>. Danach Live einmal beenden und neu starten.</li>
+        <li><b>Tablet oder Handy:</b> die Adresse öffnen, die StageCase anzeigt – beide Geräte im selben WLAN.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h2>Lizenzschlüssel</h2>
+      <p>Den Schlüssel gibst du in StageCase unter <i>Extras → Lizenz</i> ein. Noch keinen? Schreib an <a href="mailto:info@casework-software.com?subject=StageCase">info@casework-software.com</a>. Ohne Schlüssel läuft StageCase mit einem Looper kostenlos weiter. Über neue Versionen informiert dich die App selbst.</p>
+      <p>Rückmeldungen sind sehr willkommen: Was klappt, wo hakt es, was fehlt dir für deine Band?</p>
+    </div>
+  </main>
+
+  <main data-lang="en">
+    <h1>Download StageCase</h1>
+    <p class="sub">Try all features for 14 days, then go on with your licence key (Lite or Pro) – checked by Apple, no sign-up.</p>
+    <div class="card dl">
+      <a class="btn dmg" data-src="key" href="#" aria-disabled="true">⬇ Download StageCase</a>
+      <div class="ver" data-ver="key">Looking for the newest version …</div>
+      <div class="facts"><span>macOS 12 or later</span><span>Apple Silicon & Intel</span><span>Ableton Live 11 / 12</span></div>
+    </div>
+    <div class="card">
+      <h2>Getting started</h2>
+      <ol>
+        <li>Open the DMG, drag <b>“StageCase”</b> into <b>Applications</b> and start it.</li>
+        <li>The <b>setup assistant</b> guides you through the rest and installs the Remote Script for Live.</li>
+        <li class="imp"><b>Important, in Live:</b> Settings → <i>Link, Tempo & MIDI</i> → pick <b>“Stagecase”</b> as a free control surface, with input and output <b>“Stagecase”</b> too. Then quit and restart Live once.</li>
+        <li><b>Tablet or phone:</b> open the address StageCase shows – both devices on the same Wi-Fi.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h2>Licence key</h2>
+      <p>Enter the key in StageCase under <i>Extras → Licence</i>. No key yet? Write to <a href="mailto:info@casework-software.com?subject=StageCase">info@casework-software.com</a>. Without a key StageCase keeps running for free with one looper. The app tells you about new versions itself.</p>
+      <p>Feedback is very welcome: what works, what doesn't, what's missing for your band?</p>
+    </div>
+  </main>
+
+  <footer><span>© 2026 Casework Software – Hendrik Holthaus</span><span><a href="../impressum.html" data-de="Impressum" data-en="Imprint">Impressum</a><a href="../datenschutz.html" data-de="Datenschutz" data-en="Privacy">Datenschutz</a></span></footer>
+</div>
+<script>
+(() => {
+  let de = true; const info = { beta: null, key: null };
+  try { de = (localStorage.getItem('sc-lang') || ((navigator.language || 'de').startsWith('de') ? 'de' : 'en')) === 'de'; } catch (_) {}
+  const paint = () => {
+    document.documentElement.lang = de ? 'de' : 'en';
+    document.title = de ? 'StageCase laden' : 'Download StageCase';
+    for (const b of document.querySelectorAll('.lang button')) b.classList.toggle('on', (b.dataset.l === 'de') === de);
+    for (const a of document.querySelectorAll('[data-de]')) a.textContent = de ? a.dataset.de : a.dataset.en;
+    for (const a of document.querySelectorAll('a.dmg')) { const i = info[a.dataset.src]; if (i) { a.href = i.url; a.removeAttribute('aria-disabled'); } }
+    for (const v of document.querySelectorAll('[data-ver]')) { const i = info[v.dataset.ver]; v.textContent = !i ? (i === false ? (de ? 'Download gerade nicht erreichbar – bitte später noch einmal.' : 'Download not reachable right now – please try again later.') : v.textContent)
+      : (de ? `Version ${i.version} · ${new Date(i.date).toLocaleDateString('de-DE')} · ca. 110 MB` : `Version ${i.version} · ${new Date(i.date).toLocaleDateString('en-GB')} · approx. 110 MB`); }
+  };
+  for (const b of document.querySelectorAll('.lang button')) b.addEventListener('click', () => { de = b.dataset.l === 'de'; try { localStorage.setItem('sc-lang', b.dataset.l); } catch (_) {} paint(); });
+  paint();
+  for (const [k, file] of [['key', 'latest-keys.json']])   // Version mit Schluessel (tools/publish-retail-test.sh, KEYS=1)
+    fetch('https://looperpilot.github.io/retail/' + file, { cache: 'no-store' }).then((r) => r.json())
+      .then((j) => { info[k] = j && j.url ? j : false; paint(); }).catch(() => { info[k] = false; paint(); });
+})();
+</script>
+</body>
+</html>
