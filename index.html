@@ -239,7 +239,7 @@
   .trp { display: inline-flex; gap: .6cqw; align-items: center; font-size: 1.5cqw; color: #9a9aa4; }
   .trp i { font-style: normal; border: 1px solid #444; border-radius: .6cqw; padding: .2cqw .8cqw; color: #fff; } .trp b { color: var(--warn); }
 
-  /* Vorschau-Hinweis (Lights) */
+  /* Beta-Hinweis (Lights) */
   .tile .prev, .prev { position: absolute; top: 14px; right: 14px; font-size: 10.5px; font-style: normal; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
     color: #0b0b0d; background: var(--warn); border-radius: 6px; padding: 2px 7px; }
   #sTitle .prev { position: static; vertical-align: middle; margin-left: 8px; font-size: 11px; }
@@ -522,7 +522,7 @@
     endH: ['Questions?', 'Fragen?'], endP: ['Drop me a line – I’ll answer personally.', 'Schreib mir kurz – ich antworte persönlich.'],
     tm: ['Ableton and Live are trademarks of Ableton AG. StageCase is not a product of Ableton.', 'Ableton und Live sind Marken der Ableton AG. StageCase ist kein Produkt von Ableton.'],
     imp: ['Imprint', 'Impressum'], dat: ['Privacy', 'Datenschutz'],
-    hint: ['Esc closes · ← → step by step · Tab next area', 'Esc schließt · ← → Schritt für Schritt · Tab nächster Bereich'], soon: ['Soon · in planning', 'Bald · in Planung'], pre: ['Preview', 'Vorschau'], neu: ['New', 'Neu'], open: ['Show me →', 'Zeig mal →'],
+    hint: ['Esc closes · ← → step by step · Tab next area', 'Esc schließt · ← → Schritt für Schritt · Tab nächster Bereich'], soon: ['Soon · in planning', 'Bald · in Planung'], pre: ['Beta version', 'Beta-Version'], neu: ['New', 'Neu'], open: ['Show me →', 'Zeig mal →'],
   };
   // Listen der Preis-Karten (data-li)
   const TL = {
@@ -560,7 +560,7 @@
         ['Follows the song', 'Folgt dem Song', 'Brushes in the verse, the big kit in the chorus – the kit stays until a later section sets another.', 'Besen in der Strophe, das große Kit im Refrain – ein Kit bleibt, bis ein späterer Abschnitt ein anderes setzt.'],
         ['Your devices', 'Deine Geräte', 'TD-07 to TD-50X and SPD-SX PRO via USB, the TD-20 via MIDI, the Kemper Profiler with performances and slots.', 'TD-07 bis TD-50X und SPD-SX PRO per USB, der TD-20 über MIDI, der Kemper Profiler mit Performances und Slots.']] },
     { id: 'lights', ic: '<svg viewBox="0 0 64 64" width="1em" height="1em" style="vertical-align:-.12em" aria-hidden="true"><defs><linearGradient id="lb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe27a" stop-opacity=".95"/><stop offset="1" stop-color="#ffe27a" stop-opacity="0"/></linearGradient></defs><path d="M24 22 L8 60 H56 L40 22 Z" fill="url(#lb)"/><rect x="20" y="8" width="24" height="16" rx="4" fill="#3a3a42" stroke="#c9ced4" stroke-width="2"/><circle cx="32" cy="22" r="6" fill="#fff6c8"/><path d="M14 16 H20 M44 16 H50" stroke="#c9ced4" stroke-width="3" stroke-linecap="round"/></svg>', c: '#ffd60a', badge: 'pre', t: ['Lights', 'Lights'], d: ['Lightkey cues per section – they follow the song', 'Lightkey-Cues je Abschnitt – sie folgen dem Song'],
-      one: ['Your light show follows the song – no clips in Live needed.', 'Deine Lichtshow folgt dem Song – ohne Clips in Live.'],
+      one: ['Your light show follows the song – no clips in Live needed. Dimmer curves are adjustable.', 'Deine Lichtshow folgt dem Song – ohne Clips in Live. Dimmerkurven sind einstellbar.'],
       ch: [['Lightkey cues as buttons', 'Lightkey-Cues als Tasten', 'Your Lightkey Live Triggers become pages and cue buttons in their clip colours.', 'Deine Lightkey Live Triggers werden zu Seiten und Cue-Tasten in ihren Clipfarben.'],
         ['Light per section', 'Licht je Abschnitt', 'Tap a section, then a cue – saved in the Live set.', 'Abschnitt antippen, dann einen Cue – gespeichert im Live-Set.'],
         ['Follows the song', 'Folgt dem Song', 'Verse, chorus, solo – the light switches with the section, even when you jump or loop.', 'Strophe, Refrain, Solo – das Licht schaltet mit dem Abschnitt, auch beim Springen und Loopen.'],
