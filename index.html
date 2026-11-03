@@ -384,6 +384,8 @@
   .pc ul li::before { content: '✓'; color: var(--play); font-weight: 800; margin-right: 8px; }
   .pc ul li.plus::before { content: '＋'; color: var(--or); }
   .pc .buy { margin-top: auto; padding-top: 14px; font-size: 12.5px; font-weight: 700; color: var(--faint); }
+  .pc .bbtn { margin-top: auto; display: block; text-align: center; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--line); color: var(--fg); font-weight: 800; text-decoration: none; }
+  .pc .bbtn.main { background: var(--or); border-color: var(--or); color: #16161a; } .pc .bbtn:hover { filter: brightness(1.08); }
   .terms { margin: 22px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; font-size: 14px; color: var(--dim); }
   @media (max-width: 760px) { .terms { grid-template-columns: 1fr; } }
   .terms li::before { content: '•'; color: var(--or); margin-right: 8px; }
@@ -456,9 +458,9 @@
     <h2 data-t="prH"></h2>
     <p class="lead" data-t="prL"></p>
     <div class="prices">
-      <div class="pc"><b data-t="p0t"></b><div class="pr" data-t="p0p"></div><small data-t="p0s"></small><ul data-li="p0f"></ul></div>
-      <div class="pc"><b>Lite</b><div class="pr"><s>79 €</s> 59 €</div><small data-t="intro"></small><ul data-li="p1f"></ul><span class="buy" data-t="soonBuy"></span></div>
-      <div class="pc best"><em data-t="rec"></em><b>Pro</b><div class="pr"><s>249 €</s> 179 €</div><small data-t="intro"></small><ul data-li="p2f"></ul><span class="buy" data-t="soonBuy"></span></div>
+      <div class="pc"><b data-t="p0t"></b><div class="pr" data-t="p0p"></div><small data-t="p0s"></small><ul data-li="p0f"></ul><a class="bbtn" href="downloads/" data-t="getFree"></a></div>
+      <div class="pc"><b>Lite</b><div class="pr"><s>79 €</s> 59 €</div><small data-t="intro"></small><ul data-li="p1f"></ul><a class="bbtn main" href="https://buy.stripe.com/8x2aEW7Vy5ZUa5D0or18c00" data-t="buyLite"></a></div>
+      <div class="pc best"><em data-t="rec"></em><b>Pro</b><div class="pr"><s>249 €</s> 179 €</div><small data-t="intro"></small><ul data-li="p2f"></ul><a class="bbtn main" href="https://buy.stripe.com/dRm9AS1xagEyfpX9Z118c01" data-t="buyPro"></a></div>
     </div>
     <ul class="terms" data-li="terms"></ul>
     <p class="tlink"><a href="bedingungen.html" data-t="tlink"></a></p>
@@ -515,7 +517,7 @@
     prL: ['Try everything for 14 days, then pick the edition you need. One payment – no subscription.', '14 Tage alles ausprobieren, dann die passende Ausgabe wählen. Einmal zahlen – kein Abo.'],
     p0t: ['Trial', 'Testversion'], p0p: ['0 €', '0 €'], p0s: ['14 days, no key needed', '14 Tage, ohne Schlüssel'],
     once: ['one-time · incl. VAT', 'einmalig · inkl. MwSt.'], intro: ['Launch price for 3 months from release · one-time · incl. VAT', 'Einführungspreis: 3 Monate ab Verkaufsstart · einmalig · inkl. MwSt.'], rec: ['Recommended', 'Empfohlen'],
-    soonBuy: ['Available soon – currently in beta', 'Bald erhältlich – derzeit in der Beta'],
+    getFree: ['⬇ Download free', '⬇ Kostenlos laden'], buyLite: ['Buy Lite', 'Lite kaufen'], buyPro: ['Buy Pro', 'Pro kaufen'],
     tlink: ['Licence terms, refunds and seller information →', 'Lizenzbedingungen, Rückerstattung und Verkäufer →'],
     endH: ['Questions?', 'Fragen?'], endP: ['Drop me a line – I’ll answer personally.', 'Schreib mir kurz – ich antworte persönlich.'],
     tm: ['Ableton and Live are trademarks of Ableton AG. StageCase is not a product of Ableton.', 'Ableton und Live sind Marken der Ableton AG. StageCase ist kein Produkt von Ableton.'],
