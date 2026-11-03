@@ -884,8 +884,8 @@
     const pb = $('pages').querySelector('.on'); if (pb && first) pb.scrollIntoView({ block: 'nearest', inline: 'center' });
     const pv = P[(i + P.length - 1) % P.length], nx = P[(i + 1) % P.length];
     $('pgPrev').innerHTML = `‹ ${esc(L(pv.t))}`; $('pgNext').innerHTML = `${esc(L(nx.t))} ›`;
-    // automatisch: nach dem letzten Kapitel in den naechsten Bereich -- ein durchgehender Rundgang
-    if (auto) adv = setTimeout(() => (step + 1 < p.ch.length ? show(i, step + 1, true) : show((i + 1) % P.length, 0, false)), DUR);
+    // automatisch: nur die Kapitel dieses Bereichs im Kreis -- in den naechsten Bereich wechselt der Besucher selbst
+    if (auto) adv = setTimeout(() => show(i, (step + 1) % p.ch.length, true), DUR);
   }
   const fwd = () => (step + 1 < P[cur].ch.length ? show(cur, step + 1, true) : show((cur + 1) % P.length, 0, false));
   const back = () => (step > 0 ? show(cur, step - 1, true) : (() => { const k = (cur + P.length - 1) % P.length; show(k, P[k].ch.length - 1, false); })());
