@@ -389,9 +389,11 @@
   .terms { margin: 22px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; font-size: 14px; color: var(--dim); }
   @media (max-width: 760px) { .terms { grid-template-columns: 1fr; } }
   .terms li::before { content: '•'; color: var(--or); margin-right: 8px; }
+  .socl { margin: 22px 0 0; color: var(--dim); font-size: 14px; } .socl a { color: var(--fg); text-decoration: none; margin: 0 8px; display: inline-flex; align-items: center; gap: 6px; } .socl a:hover { color: var(--or); }
   .tlink { margin: 16px 0 0; font-size: 14px; } .tlink a { color: var(--or); }
   footer { border-top: 1px solid var(--line); padding: 20px 0 40px; color: var(--faint); font-size: 13px; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
   footer a { color: var(--dim); text-decoration: none; margin-right: 14px; }
+  footer a.soc { display: inline-flex; vertical-align: middle; } footer a.soc:hover { color: var(--fg); }
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s, transform .6s; } .reveal.in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .tile, .reveal { opacity: 1 !important; transform: none !important; } }
   /* Handy: Szenen untereinander statt nebeneinander (steht am Ende, damit es die Szenen-Regeln ueberschreibt) */
@@ -500,9 +502,10 @@
     <h2 data-t="endH"></h2>
     <p class="lead" style="margin:8px auto 0;color:var(--dim)" data-t="endP"></p>
     <div class="cta"><a class="btn main" href="mailto:info@casework-software.com?subject=StageCase" data-t="cta2"></a></div>
+    <p class="socl"><span data-t="socT"></span> <a href="https://www.youtube.com/@StageCaseApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="1.5" y="5" width="21" height="14" rx="4" fill="currentColor"/><path d="M10 9v6l5.2-3z" fill="var(--bg,#0b0b0d)"/></svg> YouTube</a> <a href="https://www.instagram.com/stagecaseapp/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg> Instagram</a></p>
   </section>
 
-  <footer><span data-t="tm"></span><span><a href="impressum.html" data-t="imp"></a><a href="datenschutz.html" data-t="dat"></a></span></footer>
+  <footer><span data-t="tm"></span><span><a href="impressum.html" data-t="imp"></a><a href="datenschutz.html" data-t="dat"></a><a class="soc" href="https://www.youtube.com/@StageCaseApp" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="1.5" y="5" width="21" height="14" rx="4" fill="currentColor"/><path d="M10 9v6l5.2-3z" fill="var(--bg,#0b0b0d)"/></svg></a><a class="soc" href="https://www.instagram.com/stagecaseapp/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></a></span></footer>
 </div>
 
 <div class="stage" id="stage" aria-hidden="true">
@@ -567,6 +570,7 @@
     once: ['one-time · incl. VAT', 'einmalig · inkl. MwSt.'], intro: ['Launch price for 3 months from release · one-time · incl. VAT', 'Einführungspreis: 3 Monate ab Verkaufsstart · einmalig · inkl. MwSt.'], rec: ['Recommended', 'Empfohlen'],
     getFree: ['⬇ Download free', '⬇ Kostenlos laden'], buyLite: ['Buy Lite', 'Lite kaufen'], buyPro: ['Buy Pro', 'Pro kaufen'],
     tlink: ['Licence terms, refunds and seller information →', 'Lizenzbedingungen, Rückerstattung und Verkäufer →'],
+    socT: ['See StageCase in action:', 'StageCase in Aktion sehen:'],
     endH: ['Questions?', 'Fragen?'], endP: ['Drop me a line – I’ll answer personally.', 'Schreib mir kurz – ich antworte persönlich.'],
     tm: ['Ableton and Live are trademarks of Ableton AG. StageCase is not a product of Ableton.', 'Ableton und Live sind Marken der Ableton AG. StageCase ist kein Produkt von Ableton.'],
     imp: ['Imprint', 'Impressum'], dat: ['Privacy', 'Datenschutz'],
