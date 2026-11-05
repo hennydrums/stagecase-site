@@ -16,13 +16,36 @@
     --play: #34c759; --rec: #ff3b30; --dub: #0a84ff; --warn: #ffd60a; --or: #ff9f0a; }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  html, body { margin: 0; background: var(--bg); color: var(--fg); overflow-x: hidden; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); overflow-x: hidden; overflow-x: clip; }
   body { font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: inherit; }
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
   .head { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; font-size: 14px; color: var(--dim); }
   .head a { text-decoration: none; color: var(--dim); } .head a:hover { color: var(--fg); }
   .lang button { background: none; border: 1px solid var(--line); color: var(--dim); border-radius: 6px; padding: 3px 8px; font: 600 12px inherit; cursor: pointer; }
+  /* Navigationsleiste: bleibt oben stehen */
+  .topbar { position: sticky; top: 0; z-index: 15; background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .topbar.sc { border-bottom-color: var(--line); }
+  .topbar .wrap { display: flex; align-items: center; gap: 22px; height: 56px; }
+  .topbar .lg { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; text-decoration: none; color: var(--fg); margin-right: auto; }
+  .topbar .lg svg { width: 26px; height: 26px; } .topbar .lg i { font-style: normal; color: var(--or); }
+  .topbar .nl { display: flex; gap: 20px; font-size: 14px; } .topbar .nl a { color: var(--dim); text-decoration: none; } .topbar .nl a:hover { color: var(--fg); }
+  .topbar .nb { height: 34px; padding: 0 14px; border-radius: 9px; background: var(--or); color: #16161a; font-weight: 800; font-size: 13.5px; text-decoration: none; display: inline-flex; align-items: center; }
+  @media (max-width: 700px) { .topbar .nl { display: none; } .topbar .wrap { gap: 12px; } }
+  .btn.alt { background: none; }
+  .btn.or { background: var(--or); color: #16161a; border-color: transparent; }
+  /* Video-Platz: nur ein Vorschaubild, das zu YouTube verlinkt (kein eingebettetes Video, keine Cookies) */
+  .vid { display: block; position: relative; max-width: 900px; margin: 5vh auto 0; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); text-decoration: none; color: var(--fg);
+    background: radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--or) 28%, transparent), transparent 60%), radial-gradient(ellipse at 80% 90%, color-mix(in srgb, var(--play) 22%, transparent), transparent 55%), var(--card); }
+  .vid .rings { position: absolute; inset: 0; display: grid; place-items: center; opacity: .35; }
+  .vid .pl { position: absolute; left: 50%; top: 50%; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%; background: var(--fg); display: grid; place-items: center; box-shadow: 0 10px 40px #000a; transition: transform .2s; }
+  .vid .pl::after { content: ''; margin-left: 6px; border-style: solid; border-width: 15px 0 15px 25px; border-color: transparent transparent transparent #0b0b0d; }
+  .vid:hover .pl { transform: scale(1.08); }
+  .vid .vt { position: absolute; left: 22px; bottom: 18px; right: 22px; display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+  .vid .vt b { font-size: clamp(16px, 2vw, 22px); } .vid .vt span { color: var(--dim); font-size: 13px; white-space: nowrap; }
+  @media (max-width: 600px) { .vid { aspect-ratio: 4 / 3; } .vid .pl { width: 64px; height: 64px; margin: -40px 0 0 -32px; } .vid .vt { left: 14px; right: 14px; bottom: 12px; } .vid .vt b { font-size: 15px; } }
+  /* Schluss: noch einmal zum Download */
+  .like { text-align: center; padding: 9vh 0 2vh; } .like .lead { color: var(--dim); margin: 8px auto 0; max-width: 620px; }
   .lang button.on { color: var(--fg); border-color: var(--faint); }
 
   /* ---------- Kopf: Schriftzug ---------- */
@@ -44,7 +67,7 @@
 
   /* ---------- Kacheln ---------- */
   h2 { font-size: clamp(22px, 2.4vw, 30px); margin: 0 0 6px; letter-spacing: -.01em; }
-  .sect { padding: 7vh 0 2vh; }
+  .sect { padding: 7vh 0 2vh; scroll-margin-top: 50px; }
   .sect > p.lead { color: var(--dim); margin: 0 0 24px; max-width: 760px; }
   .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   @media (max-width: 960px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
@@ -413,8 +436,13 @@
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="head"><span></span><span class="lang"><button type="button" data-l="de">DE</button> <button type="button" data-l="en">EN</button></span></div>
+<header class="topbar" id="nav"><div class="wrap">
+  <a class="lg" href="#top"><svg viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="176" fill="none" stroke="#2a2a30" stroke-width="44"/><path d="M256 80 A176 176 0 1 1 80 256" fill="none" stroke="#34c759" stroke-width="44" stroke-linecap="round"/><path d="M256 256 V154 A102 102 0 1 1 154 256 Z" fill="#ff9f0a"/></svg><span>Stage<i>Case</i></span></a>
+  <nav class="nl"><a href="#seiten" data-t="nFeat"></a><a href="#preise" data-t="nPrice"></a><a href="downloads/" data-t="nDl"></a><a href="https://www.youtube.com/@StageCaseApp" target="_blank" rel="noopener">YouTube</a></nav>
+  <span class="lang"><button type="button" data-l="de">DE</button> <button type="button" data-l="en">EN</button></span>
+  <a class="nb" href="#preise" data-t="nBuy"></a>
+</div></header>
+<div class="wrap" id="top">
 
   <section class="hero">
     <svg class="wm" viewBox="0 0 392 110" role="img" aria-label="StageCase">
@@ -427,8 +455,13 @@
     </svg>
     <p class="claim" data-t="claim"></p>
     <p class="sub" data-t="sub"></p>
-    <div class="cta"><a class="btn main" href="#seiten" data-t="cta1"></a></div>
+    <div class="cta"><a class="btn main" href="downloads/" data-t="ctaTry"></a><a class="btn or" href="#preise" data-t="ctaBuy"></a><a class="btn alt" href="#seiten" data-t="cta1"></a></div>
     <div class="badge" data-t="badge"></div>
+    <a class="vid" href="https://www.youtube.com/@StageCaseApp" target="_blank" rel="noopener">
+      <div class="rings"><svg viewBox="0 0 512 512" width="62%" height="62%" aria-hidden="true"><circle cx="256" cy="256" r="176" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="44"/><path d="M256 80 A176 176 0 1 1 80 256" fill="none" stroke="#34c759" stroke-width="44" stroke-linecap="round"/></svg></div>
+      <span class="pl" aria-hidden="true"></span>
+      <div class="vt"><b data-t="vidT"></b><span data-t="vidS"></span></div>
+    </a>
   </section>
 
   <section class="sect" id="seiten">
@@ -498,6 +531,12 @@
     <p class="tlink"><a href="bedingungen.html" data-t="tlink"></a></p>
   </section>
 
+  <section class="like reveal">
+    <h2 data-t="likeH"></h2>
+    <p class="lead" data-t="likeP"></p>
+    <div class="cta"><a class="btn main" href="downloads/" data-t="ctaTry"></a><a class="btn or" href="#preise" data-t="ctaBuy"></a></div>
+  </section>
+
   <section class="end reveal">
     <h2 data-t="endH"></h2>
     <p class="lead" style="margin:8px auto 0;color:var(--dim)" data-t="endP"></p>
@@ -532,6 +571,11 @@
     claim: ['The musical director for Ableton Live – from the rehearsal room to the stage.', 'Der Musical Director für Ableton Live – vom Proberaum bis auf die Bühne.'],
     sub: ['Loopers, clips, setlist, lead sheet, mixer and audio interface in one app – on the Mac and on every tablet in the room. Your controllers plug straight in.',
       'Looper, Clips, Setlist, Lead Sheet, Mixer und Soundkarte in einer App – am Mac und auf jedem Tablet im Raum. Deine Controller stecken einfach mit drin.'],
+    nFeat: ['Features', 'Funktionen'], nPrice: ['Prices', 'Preise'], nDl: ['Download', 'Download'], nBuy: ['Buy', 'Kaufen'],
+    ctaTry: ['⬇ Try free for 14 days', '⬇ 14 Tage kostenlos testen'], ctaBuy: ['Buy', 'Kaufen'],
+    vidT: ['See StageCase in action', 'StageCase in Aktion sehen'], vidS: ['▶ on YouTube', '▶ auf YouTube'],
+    likeH: ['Like what you see?', 'Gefällt dir, was du siehst?'],
+    likeP: ['Try every feature free for 14 days – no key, no sign-up. Afterwards StageCase keeps running with one looper.', 'Teste 14 Tage lang alle Funktionen kostenlos – ohne Schlüssel, ohne Anmeldung. Danach läuft StageCase mit einem Looper einfach weiter.'],
     cta1: ['▶ Take the tour', '▶ Rundgang starten'], cta2: ['✉ Write to me', '✉ Schreib mir'],
     badge: ['MACOS · ABLETON LIVE 11 / 12', 'MACOS · ABLETON LIVE 11 / 12'],
     tilesH: ['Everything in one case', 'Alles in einem Case'],
@@ -664,6 +708,7 @@
   const L = (pair) => pair[de ? 1 : 0];
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  addEventListener('scroll', () => document.getElementById('nav').classList.toggle('sc', scrollY > 8), { passive: true });
   function texts() {
     document.documentElement.lang = de ? 'de' : 'en';
     for (const el of document.querySelectorAll('[data-t]')) el.textContent = L(TX[el.dataset.t]);
