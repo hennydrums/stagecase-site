@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0b0d">
+<meta name="description" content="StageCase Go – the musical director without a DAW: songs with tempo and bars, setlists, click, count-in, cues and playback to the desk, lead sheet and show clock on every tablet.">
+<link rel="icon" href="icon-512.png">
+<link rel="apple-touch-icon" href="icon-512.png">
+<title data-en="StageCase Go – Musical director without a DAW">StageCase Go – Musical Director ohne DAW</title>
+<!-- Produktseite StageCase Go (stagecase.app/go/). Blau = Go, Orange = Play/Marke. -->
+<style>
+  :root { color-scheme: dark; --bg: #0b0b0d; --card: #17171b; --cell: #1d1d22; --line: #2c2c32; --fg: #f2f2f2; --dim: #a6a6ae; --faint: #6b6b74;
+    --go: #0a84ff; --go2: #64d2ff; --or: #ff9f0a; --sc: #34c759; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); overflow-x: hidden; overflow-x: clip; }
+  body { font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  .disp { font-family: "Avenir Next", -apple-system, Helvetica, Arial; font-weight: 800; letter-spacing: -.02em; }
+
+  .topbar { position: sticky; top: 0; z-index: 10; background: rgba(11,11,13,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid transparent; }
+  .topbar.sc { border-bottom-color: var(--line); }
+  .topbar .in { max-width: 1080px; margin: 0 auto; padding: 11px 20px; display: flex; align-items: center; gap: 10px; }
+  .logo { display: flex; align-items: center; gap: 9px; text-decoration: none; font: 800 19px "Avenir Next", -apple-system, Helvetica, Arial; }
+  .logo b { color: var(--or); } .logo i { font-style: normal; color: var(--go); margin-left: 5px; } .logo svg { width: 28px; height: 28px; }
+  .fam { font: 600 12px -apple-system, Helvetica, Arial; color: var(--dim); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+  .fam:hover { color: var(--fg); border-color: var(--faint); } .fam span { color: var(--faint); }
+  .fam.sc b { color: var(--sc); font-weight: 700; } .fam.sc:hover { border-color: var(--sc); }
+  .nl { display: flex; gap: 20px; margin-left: auto; font-size: 14px; }
+  .nl a { text-decoration: none; color: var(--dim); } .nl a:hover { color: var(--fg); }
+  .lang { display: inline-flex; gap: 4px; } .lang button { background: none; border: 1px solid var(--line); color: var(--dim); border-radius: 6px; padding: 3px 8px; font: 600 12px -apple-system, Helvetica, Arial; cursor: pointer; }
+  .lang button.on { color: var(--fg); border-color: var(--faint); }
+  .nb { text-decoration: none; background: var(--go); color: #fff; font: 700 13px -apple-system, Helvetica, Arial; padding: 7px 14px; border-radius: 9px; margin-left: 10px; }
+  @media (max-width: 960px) { .fam.sc { display: none; } }
+  @media (max-width: 760px) { .nl { display: none; } .lang { margin-left: auto; } } .lang { margin-left: 14px; }
+
+  .hero { text-align: center; padding: 64px 0 20px; }
+  .wm { width: min(440px, 88vw); height: auto; }
+  h1 { margin: 26px auto 0; max-width: 800px; font-size: clamp(34px, 5.4vw, 58px); line-height: 1.05; }
+  h1 em { font-style: normal; color: var(--go); }
+  .sub { max-width: 660px; margin: 18px auto 0; color: var(--dim); font-size: clamp(16px, 2vw, 19px); }
+  .cta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .btn { text-decoration: none; padding: 13px 22px; border-radius: 12px; font-weight: 700; }
+  .btn.main { background: var(--go); color: #fff; } .btn.alt { border: 1px solid var(--line); color: var(--fg); } .btn.alt:hover { border-color: var(--faint); }
+  .soon { display: block; margin-top: 10px; color: var(--faint); font-size: 13px; }
+
+  /* Show-Bildschirm als Bild */
+  .shot { margin: 46px auto 0; max-width: 900px; background: #101013; border: 1px solid var(--line); border-radius: 22px; padding: 18px; box-shadow: 0 40px 100px -40px rgba(10,132,255,.55); }
+  .shot .bar { display: flex; justify-content: space-between; align-items: center; color: var(--faint); font: 700 12px -apple-system, Helvetica, Arial; letter-spacing: .08em; text-transform: uppercase; }
+  .shot .clock { color: var(--fg); font: 800 15px ui-monospace, Menlo, monospace; letter-spacing: 0; }
+  .shot .now { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: end; margin: 16px 4px 14px; text-align: left; }
+  .shot .song { font-size: clamp(26px, 4.6vw, 46px); line-height: 1; }
+  .shot .meta { color: var(--dim); font-weight: 600; margin-top: 6px; }
+  .beats { display: flex; gap: 8px; } .beats i { width: clamp(22px, 4vw, 38px); height: clamp(22px, 4vw, 38px); border-radius: 50%; background: #26262c; animation: beat 2s steps(1) infinite; }
+  .beats i:nth-child(1) { animation-delay: 0s; } .beats i:nth-child(2) { animation-delay: .5s; } .beats i:nth-child(3) { animation-delay: 1s; } .beats i:nth-child(4) { animation-delay: 1.5s; }
+  @keyframes beat { 0% { background: var(--or); box-shadow: 0 0 20px rgba(255,159,10,.6); } 25%, 100% { background: #26262c; box-shadow: none; } }
+  .beats i:first-child { animation-name: beat1; } @keyframes beat1 { 0% { background: var(--go); box-shadow: 0 0 20px rgba(10,132,255,.7); } 25%, 100% { background: #26262c; box-shadow: none; } }
+  .secs { display: flex; gap: 4px; height: 46px; } .secs div { border-radius: 8px; background: #1e1e24; color: var(--dim); font: 700 12px -apple-system, Helvetica, Arial; display: flex; align-items: center; padding: 0 10px; overflow: hidden; white-space: nowrap; position: relative; }
+  .secs .done { background: #16222f; color: #6f8fb3; } .secs .on { background: #0a3a6e; color: #fff; outline: 2px solid var(--go); }
+  .secs .on::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 38%; background: rgba(10,132,255,.35); animation: prog 8s linear infinite; }
+  @keyframes prog { from { width: 0; } to { width: 100%; } }
+  .shot .lyr { display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px; margin-top: 14px; text-align: left; }
+  .shot .lyr > div { background: #16161a; border-radius: 12px; padding: 14px 16px; }
+  .shot .ch { color: var(--or); font-weight: 800; font-size: 14px; } .shot .tx { font-size: 17px; font-weight: 600; margin: 0 0 6px; }
+  .shot .nx b { display: block; color: var(--faint); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; } .shot .nx span { font-size: 18px; font-weight: 700; }
+  .iem { margin-top: 14px; background: #16161a; border-radius: 12px; padding: 12px 16px 10px; text-align: left; }
+  .iem .ih { display: flex; justify-content: space-between; gap: 10px; color: var(--faint); font: 700 11px -apple-system, Helvetica, Arial; letter-spacing: .08em; text-transform: uppercase; }
+  .iem .cn { display: inline-flex; align-items: center; gap: 5px; color: var(--go2); letter-spacing: .04em; }
+  .strips { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; margin-top: 10px; }
+  .cs { text-align: center; } .cs span { display: block; margin-top: 6px; color: var(--dim); font: 700 11px -apple-system, Helvetica, Arial; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ft { position: relative; height: 74px; width: 100%; max-width: 46px; margin: 0 auto; background: #0f0f12; border-radius: 8px; overflow: visible; }
+  .ft .mt { position: absolute; left: 50%; bottom: 0; width: 6px; margin-left: -3px; height: var(--h); border-radius: 3px; background: linear-gradient(to top, #30d158 0%, #30d158 65%, #ffd60a 85%, #ff453a 100%); transform-origin: bottom; animation: mtr 1.3s ease-in-out infinite; opacity: .85; }
+  @keyframes mtr { 0%, 100% { transform: scaleY(.55); } 30% { transform: scaleY(.95); } 60% { transform: scaleY(.7); } 80% { transform: scaleY(.88); } }
+  .ft b { position: absolute; left: 50%; width: 30px; margin-left: -15px; height: 14px; border-radius: 4px; background: #d8dadf; box-shadow: 0 2px 6px rgba(0,0,0,.5), inset 0 -2px 0 rgba(0,0,0,.2); }
+  .cs.me span { color: var(--go2); } .cs.me .ft b { background: var(--go2); }
+  .cs.ck span { color: var(--or); } .cs.ck .ft b { background: var(--or); }
+  @media (max-width: 600px) { .strips { grid-template-columns: repeat(4, 1fr); } .iem .cn { display: none; } }
+  @media (max-width: 600px) { .shot .lyr, .shot .now { grid-template-columns: 1fr; } .shot .bar span:last-child { display: none; } .secs div:nth-child(n+5) { display: none; } }
+
+  section.s { padding: 90px 0 0; }
+  h2 { text-align: center; margin: 0; font-size: clamp(26px, 3.6vw, 38px); }
+  .lead { text-align: center; color: var(--dim); max-width: 640px; margin: 10px auto 34px; }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; counter-reset: st; }
+  @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+  .st { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
+  .st::before { counter-increment: st; content: counter(st); display: inline-flex; width: 34px; height: 34px; border-radius: 50%; align-items: center; justify-content: center; background: rgba(10,132,255,.16); color: var(--go2); font-weight: 800; }
+  .st b { display: block; margin: 12px 0 6px; font-size: 18px; } .st p { margin: 0; color: var(--dim); font-size: 15px; }
+
+  .feat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (max-width: 820px) { .feat { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .feat { grid-template-columns: 1fr; } }
+  .f { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; position: relative; }
+  .f .ic { font-size: 26px; line-height: 1; } .f b { display: block; margin: 10px 0 4px; } .f p { margin: 0; color: var(--dim); font-size: 14px; }
+  .f em { position: absolute; top: 14px; right: 14px; font: 800 10px -apple-system, Helvetica, Arial; letter-spacing: .08em; font-style: normal; color: var(--go2); border: 1px solid rgba(100,210,255,.5); border-radius: 999px; padding: 2px 7px; }
+
+  /* Aufbau */
+  .rig { display: grid; grid-template-columns: 1fr auto 1.3fr auto 1fr; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 26px; }
+  .node { background: var(--cell); border: 1px solid var(--line); border-radius: 14px; padding: 16px; text-align: center; }
+  .node .ic { font-size: 30px; } .node b { display: block; margin-top: 6px; } .node small { color: var(--faint); }
+  .arr { color: var(--faint); font-size: 22px; text-align: center; } .arr small { display: block; font-size: 11px; }
+  .outs { display: grid; gap: 6px; margin-top: 10px; text-align: left; }
+  .outs div { display: flex; justify-content: space-between; gap: 10px; background: #141418; border-radius: 8px; padding: 6px 10px; font-size: 13px; color: var(--dim); }
+  .outs div b { margin: 0; color: var(--fg); font-size: 13px; }
+  .tabs { margin-top: 14px; text-align: center; color: var(--dim); font-size: 14px; }
+  .rig .lk { height: 34px; margin-top: -10px; border-bottom: 2px dashed rgba(100,210,255,.6); }
+  .rig .lk.l { grid-column: 1; margin-left: 50%; border-left: 2px dashed rgba(100,210,255,.6); border-bottom-left-radius: 14px; margin-right: -10px; }
+  .rig .lk.m { grid-column: 2 / 5; position: relative; margin-left: -10px; margin-right: -10px; }
+  .rig .lk.r { grid-column: 5; margin-right: 50%; border-right: 2px dashed rgba(100,210,255,.6); border-bottom-right-radius: 14px; margin-left: -10px; }
+  .rig .pill { position: absolute; left: 50%; bottom: -15px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; background: #10202f; border: 1px solid rgba(100,210,255,.6); color: #cfeeff; font: 700 13px -apple-system, Helvetica, Arial; padding: 4px 12px; border-radius: 999px; }
+  .rig { padding-bottom: 40px; }
+  .rig > .node { align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+  @media (max-width: 760px) { .rig .lk { display: none; } .rig { padding-bottom: 26px; } }
+  .net em.pro { font: 800 10px -apple-system, Helvetica, Arial; letter-spacing: .08em; font-style: normal; color: var(--go2); border: 1px solid rgba(100,210,255,.5); border-radius: 999px; padding: 2px 7px; vertical-align: 2px; margin-left: 6px; }
+  .net { display: flex; align-items: center; gap: 16px; margin-top: 12px; padding: 16px 20px; border: 1.5px dashed rgba(100,210,255,.45); border-radius: 16px; background: rgba(10,132,255,.06); }
+  .net .nic { display: flex; gap: 8px; flex: none; } .net b { display: block; } .net span span, .net div span { color: var(--dim); font-size: 14px; }
+  @media (max-width: 760px) { .rig { grid-template-columns: 1fr; } .arr { transform: rotate(90deg); } }
+
+  .prices { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 820px; margin: 0 auto; }
+  @media (max-width: 680px) { .prices { grid-template-columns: 1fr; } }
+  .pc { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 24px; position: relative; display: flex; flex-direction: column; }
+  .pc.best { border-color: var(--go); }
+  .pc > em { position: absolute; top: -11px; left: 24px; background: var(--go); color: #fff; font: 800 11px -apple-system, Helvetica, Arial; letter-spacing: .08em; font-style: normal; padding: 3px 10px; border-radius: 999px; text-transform: uppercase; }
+  .pc > b { font-size: 20px; } .pr { font: 800 40px "Avenir Next", -apple-system, Helvetica, Arial; margin: 6px 0 2px; } .pc small { color: var(--faint); }
+  .pc ul { list-style: none; padding: 0; margin: 16px 0 22px; color: var(--dim); font-size: 15px; }
+  .pc li { padding: 5px 0 5px 24px; position: relative; } .pc li::before { content: ""; position: absolute; left: 2px; top: 11px; width: 11px; height: 6px; border-left: 2.5px solid var(--go); border-bottom: 2.5px solid var(--go); transform: rotate(-45deg); }
+  .bbtn { margin-top: auto; text-align: center; text-decoration: none; padding: 12px; border-radius: 12px; border: 1px solid var(--line); font-weight: 700; color: var(--dim); }
+  .pc.best .bbtn { background: var(--go); border-color: var(--go); color: #fff; }
+  .terms { max-width: 820px; margin: 22px auto 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; color: var(--faint); font-size: 14px; }
+  .terms li::before { content: "· "; } @media (max-width: 600px) { .terms { grid-template-columns: 1fr; } }
+
+  .faq { max-width: 760px; margin: 0 auto; }
+  details { border-bottom: 1px solid var(--line); padding: 16px 4px; }
+  summary { cursor: pointer; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::after { content: "+"; color: var(--faint); font-size: 22px; line-height: 1; } details[open] summary::after { content: "–"; }
+  details p { color: var(--dim); margin: 10px 0 0; }
+
+  .cross { margin: 90px 0 0; display: flex; align-items: center; gap: 18px; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 22px 24px; text-decoration: none; }
+  .cross:hover { border-color: var(--sc); } .cross svg { width: 48px; height: 48px; flex: none; }
+  .cross b { display: block; font-size: 18px; } .cross span { color: var(--dim); font-size: 15px; } .cross .go-a { margin-left: auto; color: var(--sc); font-weight: 700; white-space: nowrap; }
+  @media (max-width: 600px) { .cross .go-a { display: none; } }
+  footer { border-top: 1px solid var(--line); margin-top: 70px; padding: 22px 0 40px; color: var(--faint); font-size: 13px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer a { color: var(--faint); margin-left: 14px; text-decoration: none; }
+  .note { position: fixed; right: 12px; bottom: 12px; z-index: 20; background: #ffd60a; color: #2a2300; font: 700 12px -apple-system, Helvetica, Arial; padding: 6px 10px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="m-sc" viewBox="0 0 512 512"><circle cx="256" cy="256" r="176" fill="none" stroke="#2a2a30" stroke-width="44"/><path d="M256 80 A176 176 0 1 1 80 256" fill="none" stroke="#34c759" stroke-width="44" stroke-linecap="round"/><path d="M256 256 V154 A102 102 0 1 1 154 256 Z" fill="#ff9f0a"/></symbol>
+  <symbol id="m-go" viewBox="0 0 512 512"><circle cx="256" cy="256" r="176" fill="none" stroke="#2a2a30" stroke-width="44"/><path d="M256 80 A176 176 0 1 1 80 256" fill="none" stroke="#0a84ff" stroke-width="44" stroke-linecap="round"/><path d="M212 178 L344 256 L212 334 Z" fill="#ff9f0a" stroke="#ff9f0a" stroke-width="28" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="topbar" id="nav"><div class="in">
+  <a class="logo" href="#"><svg><use href="#m-go"/></svg><span>Stage<b>Case</b><i>Go</i></span></a>
+  <a class="fam" href="../" title="StageCase / StageCase Go" data-en="no DAW <span>▾</span>">ohne DAW <span>▾</span></a>
+  <a class="fam sc" href="../live/" data-en="Using Ableton Live? &lt;b&gt;StageCase →&lt;/b&gt;">Mit Ableton Live? <b>StageCase →</b></a>
+  <nav class="nl"><a href="#funktionen" data-en="Features">Funktionen</a><a href="#aufbau" data-en="Setup">Aufbau</a><a href="#preise" data-en="Prices">Preise</a><a href="#fragen" data-en="FAQ">Fragen</a></nav>
+  <span class="lang"><button type="button" data-l="de">DE</button><button type="button" data-l="en">EN</button></span>
+  <a class="nb" href="#preise" data-en="Prices">Preise</a>
+</div></header>
+
+<div class="wrap">
+  <section class="hero">
+    <svg class="wm" viewBox="0 0 440 96" role="img" aria-label="StageCase Go">
+      <svg x="0" y="8" width="72" height="72" viewBox="0 0 512 512"><use href="#m-go"/></svg>
+      <text x="86" y="54" font-family="Avenir Next, Helvetica Neue, Arial" font-weight="800" font-size="44" letter-spacing="-0.5"><tspan fill="#fff">Stage</tspan><tspan fill="#ff9f0a">Case</tspan><tspan fill="#0a84ff" dx="10">Go</tspan></text>
+      <text x="88" y="78" font-family="-apple-system, Helvetica, Arial" font-size="11.5" letter-spacing="2.4" fill="#9a9aa4">MUSICAL DIRECTOR · NO DAW NEEDED</text>
+    </svg>
+    <h1 class="disp" data-en="Your show runs. &lt;em&gt;No&amp;nbsp;DAW.&lt;/em&gt;">Eure Show läuft. <em>Ohne&nbsp;DAW.</em></h1>
+    <p class="sub" data-en="Set up songs with tempo and bars, drag your setlist, press play. Click, count-in, cues and playback go to the desk – lead sheet and show clock to every tablet.">Songs mit Tempo und Takten anlegen, Setliste ziehen, Play drücken. Click, Einzähler, Ansagen und Playback gehen aufs Pult – Lead Sheet und Show-Uhr auf jedes Tablet.</p>
+    <div class="cta"><a class="btn main" href="#preise" data-en="See prices">Preise ansehen</a><a class="btn alt" href="#aufbau" data-en="How it works">So funktioniert's</a></div>
+    <span class="soon" data-en="Download coming soon">Download folgt in Kürze</span>
+
+    <div class="shot" aria-hidden="true">
+      <div class="bar"><span data-en="Setlist · Summer fest">Setliste · Sommerfest</span><span class="clock">00:23:41</span><span>Song 4 / 14</span></div>
+      <div class="now">
+        <div><div class="song disp">StageCase Funk</div><div class="meta" data-en="104 BPM · 4/4 · bar 2 of 8">104 BPM · 4/4 · Takt 2 von 8</div></div>
+        <div class="beats"><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="secs">
+        <div class="done" style="flex:2">Intro</div><div class="done" style="flex:4">Verse 1</div><div class="on" style="flex:4">Chorus</div><div style="flex:4">Verse 2</div><div style="flex:4">Chorus</div><div style="flex:2">Solo</div><div style="flex:3">Outro</div>
+      </div>
+      <div class="lyr">
+        <div><div class="ch">Am7 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D9</div><p class="tx">Turn it up, we're on the beat tonight</p><div class="ch">Fmaj7 &nbsp;&nbsp;&nbsp;&nbsp; E7</div><p class="tx" style="margin:0">every step is falling into line</p></div>
+        <div class="nx"><b data-en="Next section">Nächster Abschnitt</b><span data-en="Verse 2 · in 6 bars">Verse 2 · in 6 Takten</span><b style="margin-top:12px" data-en="Next song">Nächster Song</b><span>StageCase House · 122 BPM</span></div>
+      </div>
+      <div class="iem"><div class="ih"><span data-en="In-ear · My mix (AUX 3 · drums)">In-Ear · Mein Mix (AUX 3 · Drums)</span><span class="cn"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#64d2ff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M2.5 9a14 14 0 0 1 19 0"/><path d="M5.8 12.6a9 9 0 0 1 12.4 0"/><path d="M9.2 16.1a4.2 4.2 0 0 1 5.6 0"/><circle cx="12" cy="19.4" r="1.3" fill="#64d2ff" stroke="none"/></svg> <span data-en="Ui24R connected">Ui24R verbunden</span></span></div><div class="strips"><div class="cs me"><div class="ft"><i class="mt" style="--h:86%;animation-delay:-0.00s"></i><b style="bottom:calc(86% - 7px)"></b></div><span data-en="Me">Ich</span></div><div class="cs ck"><div class="ft"><i class="mt" style="--h:42%;animation-delay:-0.37s"></i><b style="bottom:calc(42% - 7px)"></b></div><span>Click</span></div><div class="cs"><div class="ft"><i class="mt" style="--h:50%;animation-delay:-0.74s"></i><b style="bottom:calc(50% - 7px)"></b></div><span data-en="Cues">Ansagen</span></div><div class="cs"><div class="ft"><i class="mt" style="--h:70%;animation-delay:-1.11s"></i><b style="bottom:calc(70% - 7px)"></b></div><span>Bass</span></div><div class="cs"><div class="ft"><i class="mt" style="--h:56%;animation-delay:-0.18s"></i><b style="bottom:calc(56% - 7px)"></b></div><span data-en="Guitar">Gitarre</span></div><div class="cs"><div class="ft"><i class="mt" style="--h:48%;animation-delay:-0.55s"></i><b style="bottom:calc(48% - 7px)"></b></div><span>Keys</span></div><div class="cs"><div class="ft"><i class="mt" style="--h:76%;animation-delay:-0.92s"></i><b style="bottom:calc(76% - 7px)"></b></div><span>Vocals</span></div><div class="cs"><div class="ft"><i class="mt" style="--h:62%;animation-delay:-1.29s"></i><b style="bottom:calc(62% - 7px)"></b></div><span>Playback</span></div></div></div>
+    </div>
+  </section>
+
+  <section class="s">
+    <h2 class="disp" data-en="Three steps to your show">In drei Schritten zur Show</h2>
+    <p class="lead" data-en="No arrangement to build, no tracks to shuffle. You describe your songs – StageCase Go plays the rest.">Kein Arrangement bauen, keine Spuren schieben. Ihr beschreibt eure Songs – StageCase Go spielt den Rest.</p>
+    <div class="steps">
+      <div class="st"><b data-en="Set up songs">Songs anlegen</b><p data-en="Tempo, time signature and sections with their length in bars. Type in chords and lyrics or import them as ChordPro.">Tempo, Taktart und Abschnitte mit ihrer Länge in Takten. Akkorde und Text tippt ihr ein oder importiert sie als ChordPro.</p></div>
+      <div class="st"><b data-en="Build the setlist">Setliste bauen</b><p data-en="Drag songs into order, add breaks, done. A separate list for every gig.">Songs in die richtige Reihenfolge ziehen, Pausen setzen, fertig. Für jeden Auftritt eine eigene Liste.</p></div>
+      <div class="st"><b data-en="Press play">Play drücken</b><p data-en="The show clock runs, click and cues come in time, every tablet shows where you are.">Die Show-Uhr läuft, Click und Ansagen kommen im Takt, jedes Tablet zeigt, wo ihr gerade seid.</p></div>
+    </div>
+  </section>
+
+  <section class="s" id="funktionen">
+    <h2 class="disp" data-en="Everything the band needs on stage">Alles, was die Band auf der Bühne braucht</h2>
+    <p class="lead" data-en="One Mac, one audio interface – and every tablet in the room becomes a display.">Ein Mac, ein Audio-Interface – und jedes Tablet im Raum wird zum Display.</p>
+    <div class="feat">
+      <div class="f"><div class="ic">📋</div><b data-en="Setlists and songs">Setlisten und Songs</b><p data-en="Sections in bars, tempo per section, drag songs into order.">Abschnitte mit Takten, Tempo je Abschnitt, Songs per Ziehen sortieren.</p></div>
+      <div class="f"><div class="ic">🥁</div><b data-en="Click and count-in">Click und Einzähler</b><p data-en="On its own output – only in the in-ears, never in the room.">Auf einem eigenen Ausgang – nur im In-Ear, nie im Saal.</p></div>
+      <div class="f"><div class="ic">🗣️</div><b data-en="Cues">Ansagen</b><p data-en="“Chorus”, “Two, three, four” – in time before every section.">„Chorus“, „Two, three, four“ – im Takt vor jedem Abschnitt.</p></div>
+      <div class="f"><div class="ic">🎚️</div><b data-en="Playback per song">Playback je Song</b><p data-en="One stereo track per song, in sync with the click.">Eine Stereo-Spur pro Song, läuft synchron zum Click.</p></div>
+      <div class="f"><div class="ic">🎸</div><b>Lead Sheet</b><p data-en="Chords, lyrics and diagrams for guitar, bass and keys.">Akkorde, Text und Griffbilder für Gitarre, Bass und Keys.</p></div>
+      <div class="f"><div class="ic">⏱️</div><b data-en="Display and show clock">Display und Show-Uhr</b><p data-en="Song, bar and next section – big, on every device.">Song, Takt und nächster Abschnitt – groß, auf jedem Gerät.</p></div>
+      <div class="f"><em>PRO</em><div class="ic">🎧</div><b data-en="In-ear mix">In-Ear-Mix</b><p data-en="Every musician mixes their own aux – Ui24R, StudioLive and more.">Jeder Musiker mischt seinen AUX selbst – Ui24R, StudioLive und mehr.</p></div>
+      <div class="f"><em>PRO</em><div class="ic">💡</div><b data-en="Lights">Licht</b><p data-en="Lightkey cues per section, automatically in time.">Lightkey-Cues je Abschnitt, automatisch im Takt.</p></div>
+      <div class="f"><em>PRO</em><div class="ic">🎛️</div><b data-en="Devices">Geräte</b><p data-en="Drum kits, SPD-SX and Kemper change with the song.">Drum-Kits, SPD-SX und Kemper wechseln mit dem Song.</p></div>
+    </div>
+  </section>
+
+  <section class="s" id="aufbau">
+    <h2 class="disp" data-en="What the setup looks like">So sieht der Aufbau aus</h2>
+    <p class="lead" data-en="An audio interface with four outputs is all you need – for example a Behringer UMC404HD.">Ein Audio-Interface mit vier Ausgängen reicht – zum Beispiel ein Behringer UMC404HD.</p>
+    <div class="rig">
+      <div class="node"><div class="ic">💻</div><b>Mac</b><small>StageCase Go</small></div>
+      <div class="arr">→<small>USB</small></div>
+      <div class="node"><div class="ic">🎛️</div><b>Audio-Interface</b>
+        <div class="outs"><div><b>Out 1</b>Click</div><div><b>Out 2</b><span data-en="Cues">Ansagen</span></div><div><b>Out 3 + 4</b>Playback</div></div></div>
+      <div class="arr">→<small>Audio</small></div>
+      <div class="node"><div class="ic">🎚️</div><b data-en="In-ear mixer">In-Ear-Mischpult</b><small data-en="e.g. Soundcraft Ui24R">z. B. Soundcraft Ui24R</small></div>
+      <div class="lk l"></div><div class="lk m"><span class="pill"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#64d2ff" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v10h-4v3H8v-3H4z"/><path d="M8 9.5v2.5M10.7 9.5v2.5M13.3 9.5v2.5M16 9.5v2.5" stroke-linecap="round"/></svg><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#64d2ff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M2.5 9a14 14 0 0 1 19 0"/><path d="M5.8 12.6a9 9 0 0 1 12.4 0"/><path d="M9.2 16.1a4.2 4.2 0 0 1 5.6 0"/><circle cx="12" cy="19.4" r="1.3" fill="#64d2ff" stroke="none"/></svg> <span data-en="LAN or Wi-Fi – direct">LAN oder WLAN – direkt</span></span></div><div class="lk r"></div>
+    </div>
+    <div class="net"><span class="nic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#64d2ff" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v10h-4v3H8v-3H4z"/><path d="M8 9.5v2.5M10.7 9.5v2.5M13.3 9.5v2.5M16 9.5v2.5" stroke-linecap="round"/></svg><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#64d2ff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M2.5 9a14 14 0 0 1 19 0"/><path d="M5.8 12.6a9 9 0 0 1 12.4 0"/><path d="M9.2 16.1a4.2 4.2 0 0 1 5.6 0"/><circle cx="12" cy="19.4" r="1.3" fill="#64d2ff" stroke="none"/></svg></span><div><b data-en="StageCase Go controls the in-ear mixer directly &lt;em class=&quot;pro&quot;&gt;PRO&lt;/em&gt;">StageCase Go steuert das In-Ear-Pult direkt <em class="pro">PRO</em></b><span data-en="The Mac is connected to the desk by LAN cable or Wi-Fi – no mixer app, no detour. Every musician sets their own aux mix on a tablet or phone: more of yourself, less click, done. The same devices show the display too – just scan the QR code.">Der Mac ist per LAN-Kabel oder WLAN mit dem Pult verbunden – ohne Pult-App, ohne Umweg. Jeder Musiker regelt seinen eigenen AUX-Mix auf dem Tablet oder Handy: sich selbst lauter, Click leiser, fertig. Dieselben Geräte zeigen auch das Display – QR-Code scannen genügt.</span></div></div>
+  </section>
+
+  <section class="s" id="preise">
+    <h2 class="disp" data-en="Pay once, play forever">Einmal zahlen, für immer spielen</h2>
+    <p class="lead" data-en="Try everything for 14 days. Then pick the licence that fits you.">14 Tage alles ausprobieren. Danach die Lizenz, die zu euch passt.</p>
+    <div class="prices">
+      <div class="pc"><b>Go Lite</b><div class="pr">49 €</div><small data-en="one-time">einmalig</small>
+        <ul><li data-en="Setlists, songs and lead sheet">Setlisten, Songs und Lead Sheet</li><li data-en="Click, count-in and cues">Click, Einzähler und Ansagen</li><li data-en="Playback per song">Playback je Song</li><li data-en="Display and show clock on every tablet">Display und Show-Uhr auf jedem Tablet</li></ul>
+        <a class="bbtn" href="#" data-en="Coming soon">Bald verfügbar</a></div>
+      <div class="pc best"><em data-en="Recommended">Empfohlen</em><b>Go Pro</b><div class="pr">129 €</div><small data-en="one-time">einmalig</small>
+        <ul><li data-en="Everything in Lite">Alles aus Lite</li><li data-en="In-ear mix: everyone controls their aux on the desk">In-Ear-Mix: jeder steuert seinen AUX am Pult</li><li data-en="Lights with Lightkey">Licht mit Lightkey</li><li data-en="All devices: drums, SPD-SX, Kemper">Alle Geräte: Drums, SPD-SX, Kemper</li></ul>
+        <a class="bbtn" href="#" data-en="Coming soon">Bald verfügbar</a></div>
+    </div>
+    <ul class="terms"><li data-en="Licence forever">Lizenz für immer</li><li data-en="12 months of updates included">12 Monate Updates inklusive</li><li data-en="2 Macs per licence">2 Macs je Lizenz</li><li data-en="14 days money back">14 Tage Geld zurück</li><li data-en="Upgrade Lite → Pro: pay only the difference">Upgrade Lite → Pro: nur die Differenz</li><li data-en="Invoice with VAT from Stripe">Rechnung mit MwSt. von Stripe</li></ul>
+  </section>
+
+  <section class="s" id="fragen">
+    <h2 class="disp" data-en="Frequently asked questions">Häufige Fragen</h2>
+    <div class="faq" style="margin-top:26px">
+      <details><summary data-en="Which audio interface do I need?">Welches Audio-Interface brauche ich?</summary><p data-en="One with four outputs that runs on the Mac without drivers – for example the Behringer UMC404HD.">Eins mit vier Ausgängen, das am Mac ohne Treiber läuft – zum Beispiel Behringer UMC404HD.</p></details>
+      <details><summary data-en="Do I need Ableton Live?">Brauche ich Ableton Live?</summary><p data-en="No. StageCase Go plays click, cues and playback itself. If you work with Ableton Live, take StageCase.">Nein. StageCase Go spielt Click, Ansagen und Playback selbst. Wer mit Ableton Live arbeitet, nimmt StageCase.</p></details>
+      <details><summary data-en="Which devices show the display?">Welche Geräte zeigen das Display?</summary><p data-en="Any device with a browser: iPad, Android tablet, phone, a second computer. Scan the QR code, done – no app.">Jedes Gerät mit Browser: iPad, Android-Tablet, Handy, ein zweiter Rechner. QR-Code scannen, fertig – ohne App.</p></details>
+      <details><summary data-en="Does it run on Windows?">Läuft das auf Windows?</summary><p data-en="The app runs on the Mac. Displays and remote run in the browser on any device.">Das Programm läuft auf dem Mac. Displays und Fernbedienung laufen im Browser auf jedem Gerät.</p></details>
+      <details><summary data-en="Can I use footswitches and MIDI controllers?">Kann ich Fußschalter und MIDI-Controller benutzen?</summary><p data-en="Yes. Start, stop, next song or section – map them to keys, footswitches or MIDI controllers, with tap, hold or double tap.">Ja. Start, Stopp, nächster Song oder Abschnitt – auf Tasten, Fußschalter oder MIDI-Controller legen, mit Tippen, Halten oder Doppeltippen.</p></details>
+    </div>
+  </section>
+
+  <a class="cross" href="../live/"><svg><use href="#m-sc"/></svg><div><b data-en="You play with Ableton Live?">Ihr spielt mit Ableton Live?</b><span data-en="Then StageCase is the one – with loopers, arrangement and clips.">Dann ist StageCase das Richtige – mit Looper, Arrangement und Clips.</span></div><span class="go-a" data-en="To StageCase →">Zu StageCase →</span></a>
+
+  <footer><span>© Casework Software – Hendrik Holthaus<br><small data-en="Ableton and Live are trademarks of Ableton AG. StageCase is not a product of Ableton.">Ableton und Live sind Marken der Ableton AG. StageCase ist kein Produkt von Ableton.</small></span><span><a href="../impressum.html" data-en="Legal notice">Impressum</a><a href="../datenschutz.html" data-en="Privacy">Datenschutz</a><a href="https://www.youtube.com/@StageCaseApp" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/stagecaseapp/" target="_blank" rel="noopener">Instagram</a></span></footer>
+</div>
+<script>
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 8), { passive: true });
+</script>
+<script>
+  (function () {   // Sprache wie auf den anderen StageCase-Seiten (localStorage sc-lang); Texte: Deutsch im HTML, Englisch in data-en
+    let de = true; try { de = (localStorage.getItem('sc-lang') || ((navigator.language || 'de').startsWith('de') ? 'de' : 'en')) === 'de'; } catch (_) {}
+    const els = [...document.querySelectorAll('[data-en]')]; for (const e of els) e.dataset.de = e.innerHTML;
+    const apply = () => { for (const e of els) e.innerHTML = de ? e.dataset.de : e.dataset.en; document.documentElement.lang = de ? 'de' : 'en';
+      for (const b of document.querySelectorAll('.lang button')) b.classList.toggle('on', (b.dataset.l === 'de') === de); };
+    for (const b of document.querySelectorAll('.lang button')) b.addEventListener('click', () => { de = b.dataset.l === 'de'; try { localStorage.setItem('sc-lang', b.dataset.l); } catch (_) {} apply(); });
+    apply();
+  })();
+</script>
+</body>
+</html>
