@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0b0b0d">
-<meta name="description" content="StageCase – the musical director for your band: setlist, click, lead sheet, in-ear, lights and devices follow the song. StageCase for Ableton Live, StageCase Go without a DAW.">
+<meta name="description" content="StageCase – der Musical Director für deine Band: Setliste, Click, Lead Sheet, In-Ear, Licht und Geräte folgen dem Song. StageCase für Ableton Live ist erhältlich (14 Tage kostenlos testen), StageCase Go ohne DAW folgt demnächst.">
 <link rel="icon" href="icon-512.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title data-en="StageCase – Musical director for the stage">StageCase – Musical Director für die Bühne</title>
@@ -97,6 +97,76 @@
   // fruehere Startseite liegt jetzt unter live/ -- alte Links wie stagecase.app/#preise dorthin
   (function () { const h = location.hash.slice(1); if (h && !['vergleich', 'sc', 'go'].includes(h)) location.replace('live/#' + h); })();
 </script>
+<link rel="canonical" href="https://stagecase.app/">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebSite",
+ "name": "StageCase",
+ "url": "https://stagecase.app/",
+ "inLanguage": [
+  "de",
+  "en"
+ ],
+ "publisher": {
+  "@type": "Organization",
+  "name": "Casework Software – Hendrik Holthaus",
+  "url": "https://stagecase.app/",
+  "sameAs": [
+   "https://www.youtube.com/@StageCaseApp",
+   "https://www.instagram.com/stagecaseapp/"
+  ]
+ }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "SoftwareApplication",
+ "name": "StageCase",
+ "url": "https://stagecase.app/live/",
+ "downloadUrl": "https://stagecase.app/downloads/",
+ "applicationCategory": "MultimediaApplication",
+ "operatingSystem": "macOS",
+ "description": "Musical Director für Ableton Live: Looper, Clips, Setliste, Lead Sheet, Mixer und Soundkarte in einer App – am Mac und auf jedem Tablet. Jetzt erhältlich, 14 Tage kostenlos testen.",
+ "image": "https://stagecase.app/icon-512.png",
+ "publisher": {
+  "@type": "Organization",
+  "name": "Casework Software – Hendrik Holthaus",
+  "url": "https://stagecase.app/",
+  "sameAs": [
+   "https://www.youtube.com/@StageCaseApp",
+   "https://www.instagram.com/stagecaseapp/"
+  ]
+ },
+ "offers": [
+  {
+   "@type": "Offer",
+   "name": "Testversion (14 Tage)",
+   "price": "0",
+   "priceCurrency": "EUR",
+   "availability": "https://schema.org/InStock",
+   "url": "https://stagecase.app/downloads/"
+  },
+  {
+   "@type": "Offer",
+   "name": "StageCase Lite",
+   "price": "59",
+   "priceCurrency": "EUR",
+   "availability": "https://schema.org/InStock",
+   "url": "https://stagecase.app/live/#preise"
+  },
+  {
+   "@type": "Offer",
+   "name": "StageCase Pro",
+   "price": "179",
+   "priceCurrency": "EUR",
+   "availability": "https://schema.org/InStock",
+   "url": "https://stagecase.app/live/#preise"
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -128,7 +198,7 @@
         <li data-en="Mixer, audio interface and MIDI mapping">Mixer, Soundkarte und MIDI-Zuordnung</li>
         <li data-en="Plus everything StageCase Go does">Dazu alles, was StageCase Go kann</li>
       </ul>
-      <div class="foot"><span class="price" data-en="from &lt;b&gt;59 €&lt;/b&gt; · 14 days free">ab <b>59 €</b> · 14 Tage kostenlos</span><span class="go-btn" data-en="To StageCase &lt;span&gt;→&lt;/span&gt;">Zu StageCase <span>→</span></span></div>
+      <div class="foot"><span class="price" data-en="available now · from &lt;b&gt;59 €&lt;/b&gt; · 14 days free">jetzt erhältlich · ab <b>59 €</b> · 14 Tage kostenlos</span><span class="go-btn" data-en="To StageCase &lt;span&gt;→&lt;/span&gt;">Zu StageCase <span>→</span></span></div>
     </a>
     <a class="card go" id="go" href="go/">
       <div class="top"><svg><use href="#m-go"/></svg><div><span class="tag" data-en="No DAW">Ohne DAW</span><h2>Stage<b>Case</b><i>Go</i></h2></div></div>
