@@ -33,7 +33,8 @@
   .lang button.on { color: var(--fg); border-color: var(--faint); }
   .nb { text-decoration: none; background: var(--go); color: #fff; font: 700 13px -apple-system, Helvetica, Arial; padding: 7px 14px; border-radius: 9px; margin-left: 10px; }
   @media (max-width: 960px) { .fam.sc { display: none; } }
-  @media (max-width: 760px) { .nl { display: none; } .lang { margin-left: auto; } } .lang { margin-left: 14px; }
+  .lang { margin-left: 14px; } @media (max-width: 760px) { .nl { display: none; } .lang { margin-left: auto; } }
+  @media (max-width: 440px) { .nb { display: none; } }
 
   .hero { text-align: center; padding: 64px 0 20px; }
   .wm { width: min(440px, 88vw); height: auto; }
@@ -193,7 +194,7 @@
     <h2 class="disp" data-en="Three steps to your show">In drei Schritten zur Show</h2>
     <p class="lead" data-en="No arrangement to build, no tracks to shuffle. You describe your songs – StageCase Go plays the rest.">Kein Arrangement bauen, keine Spuren schieben. Ihr beschreibt eure Songs – StageCase Go spielt den Rest.</p>
     <div class="steps">
-      <div class="st"><b data-en="Set up songs">Songs anlegen</b><p data-en="Tempo, time signature and sections with their length in bars. Type in chords and lyrics or import them as ChordPro.">Tempo, Taktart und Abschnitte mit ihrer Länge in Takten. Akkorde und Text tippt ihr ein oder importiert sie als ChordPro.</p></div>
+      <div class="st"><b data-en="Set up songs">Songs anlegen</b><p data-en="Tempo, time signature and sections with their length in bars. Type in chords and lyrics or import them from ChordPro.">Tempo, Taktart und Abschnitte mit ihrer Länge in Takten. Akkorde und Text tippt ihr ein oder importiert sie als ChordPro.</p></div>
       <div class="st"><b data-en="Build the setlist">Setliste bauen</b><p data-en="Drag songs into order, add breaks, done. A separate list for every gig.">Songs in die richtige Reihenfolge ziehen, Pausen setzen, fertig. Für jeden Auftritt eine eigene Liste.</p></div>
       <div class="st"><b data-en="Press play">Play drücken</b><p data-en="The show clock runs, click and cues come in time, every tablet shows where you are.">Die Show-Uhr läuft, Click und Ansagen kommen im Takt, jedes Tablet zeigt, wo ihr gerade seid.</p></div>
     </div>
@@ -221,7 +222,7 @@
     <div class="rig">
       <div class="node"><div class="ic">💻</div><b>Mac</b><small>StageCase Go</small></div>
       <div class="arr">→<small>USB</small></div>
-      <div class="node"><div class="ic">🎛️</div><b>Audio-Interface</b>
+      <div class="node"><div class="ic">🎛️</div><b data-en="Audio interface">Audio-Interface</b>
         <div class="outs"><div><b>Out 1</b>Click</div><div><b>Out 2</b><span data-en="Cues">Ansagen</span></div><div><b>Out 3 + 4</b>Playback</div></div></div>
       <div class="arr">→<small>Audio</small></div>
       <div class="node"><div class="ic">🎚️</div><b data-en="In-ear mixer">In-Ear-Mischpult</b><small data-en="e.g. Soundcraft Ui24R">z. B. Soundcraft Ui24R</small></div>
@@ -248,14 +249,14 @@
     <h2 class="disp" data-en="Frequently asked questions">Häufige Fragen</h2>
     <div class="faq" style="margin-top:26px">
       <details><summary data-en="Which audio interface do I need?">Welches Audio-Interface brauche ich?</summary><p data-en="One with four outputs that runs on the Mac without drivers – for example the Behringer UMC404HD.">Eins mit vier Ausgängen, das am Mac ohne Treiber läuft – zum Beispiel Behringer UMC404HD.</p></details>
-      <details><summary data-en="Do I need Ableton Live?">Brauche ich Ableton Live?</summary><p data-en="No. StageCase Go plays click, cues and playback itself. If you work with Ableton Live, take StageCase.">Nein. StageCase Go spielt Click, Ansagen und Playback selbst. Wer mit Ableton Live arbeitet, nimmt StageCase.</p></details>
+      <details><summary data-en="Do I need Ableton Live?">Brauche ich Ableton Live?</summary><p data-en="No. StageCase Go plays click, cues and playback itself. If you work with Ableton Live, StageCase is the right choice.">Nein. StageCase Go spielt Click, Ansagen und Playback selbst. Wer mit Ableton Live arbeitet, nimmt StageCase.</p></details>
       <details><summary data-en="Which devices show the display?">Welche Geräte zeigen das Display?</summary><p data-en="Any device with a browser: iPad, Android tablet, phone, a second computer. Scan the QR code, done – no app.">Jedes Gerät mit Browser: iPad, Android-Tablet, Handy, ein zweiter Rechner. QR-Code scannen, fertig – ohne App.</p></details>
-      <details><summary data-en="Does it run on Windows?">Läuft das auf Windows?</summary><p data-en="The app runs on the Mac. Displays and remote run in the browser on any device.">Das Programm läuft auf dem Mac. Displays und Fernbedienung laufen im Browser auf jedem Gerät.</p></details>
+      <details><summary data-en="Does it run on Windows?">Läuft das auf Windows?</summary><p data-en="The app itself runs on the Mac. Displays and the remote run in the browser on any device.">Das Programm läuft auf dem Mac. Displays und Fernbedienung laufen im Browser auf jedem Gerät.</p></details>
       <details><summary data-en="Can I use footswitches and MIDI controllers?">Kann ich Fußschalter und MIDI-Controller benutzen?</summary><p data-en="Yes. Start, stop, next song or section – map them to keys, footswitches or MIDI controllers, with tap, hold or double tap.">Ja. Start, Stopp, nächster Song oder Abschnitt – auf Tasten, Fußschalter oder MIDI-Controller legen, mit Tippen, Halten oder Doppeltippen.</p></details>
     </div>
   </section>
 
-  <a class="cross" href="../live/"><svg><use href="#m-sc"/></svg><div><b data-en="You play with Ableton Live?">Ihr spielt mit Ableton Live?</b><span data-en="Then StageCase is the one – with loopers, arrangement and clips.">Dann ist StageCase das Richtige – mit Looper, Arrangement und Clips.</span></div><span class="go-a" data-en="To StageCase →">Zu StageCase →</span></a>
+  <a class="cross" href="../live/"><svg><use href="#m-sc"/></svg><div><b data-en="Playing with Ableton Live?">Ihr spielt mit Ableton Live?</b><span data-en="Then StageCase is for you – with loopers, arrangement and clips.">Dann ist StageCase das Richtige – mit Looper, Arrangement und Clips.</span></div><span class="go-a" data-en="To StageCase →">Zu StageCase →</span></a>
 
   <footer><span>© Casework Software – Hendrik Holthaus<br><small data-en="Ableton and Live are trademarks of Ableton AG. StageCase is not a product of Ableton.">Ableton und Live sind Marken der Ableton AG. StageCase ist kein Produkt von Ableton.</small></span><span><a href="../impressum.html" data-en="Legal notice">Impressum</a><a href="../datenschutz.html" data-en="Privacy">Datenschutz</a><a href="https://www.youtube.com/@StageCaseApp" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/stagecaseapp/" target="_blank" rel="noopener">Instagram</a></span></footer>
 </div>
